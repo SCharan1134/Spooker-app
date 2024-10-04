@@ -108,7 +108,7 @@ export default function ProfileScreen() {
       <View style={styles.verticallySpaced}>
         <Input
           label="Fullname"
-          value={username || ""}
+          value={fullName || ""}
           onChangeText={(text) => setFullName(text)}
         />
       </View>

@@ -1,9 +1,12 @@
-import { createContext, PropsWithChildren, useContext } from "react";
-import { useState, useEffect } from "react";
-import { supabase } from "../lib/supabase";
-import { View } from "react-native";
+import {
+  PropsWithChildren,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { Session, User } from "@supabase/supabase-js";
-import { Use } from "react-native-svg";
+import { supabase } from "../lib/supabase";
 
 type AuthContext = {
   session: Session | null;
@@ -36,6 +39,7 @@ export default function AuthProvider({ children }: PropsWithChildren) {
       setProfile(null);
       return;
     }
+
     const fetchProfile = async () => {
       let { data, error } = await supabase
         .from("profiles")
@@ -44,11 +48,11 @@ export default function AuthProvider({ children }: PropsWithChildren) {
         .single();
       setProfile(data);
     };
+    fetchProfile();
   }, [session?.user]);
+
   return (
-    <AuthContext.Provider
-      value={{ session, user: session?.user as User, profile }}
-    >
+    <AuthContext.Provider value={{ session, user: session?.user, profile }}>
       {children}
     </AuthContext.Provider>
   );

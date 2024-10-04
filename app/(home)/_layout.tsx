@@ -9,7 +9,7 @@ export default function HomeLayout() {
   const { user } = useAuth();
 
   if (!user) {
-    return <Redirect href={"/(auth)login"} />;
+    return <Redirect href={"/(auth)/login"} />;
   }
   return (
     <ChatProvider>
