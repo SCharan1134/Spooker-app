@@ -1,7 +1,7 @@
+import { Button, Input } from "@rneui/themed";
 import React, { useState } from "react";
 import { Alert, StyleSheet, View, AppState } from "react-native";
 import { supabase } from "../../lib/supabase";
-import { Button, Input } from "@rneui/themed";
 
 // Tells Supabase Auth to continuously refresh the session automatically if
 // the app is in the foreground. When this is added, you will continue to receive
@@ -40,7 +40,7 @@ export default function Auth() {
       email: email,
       password: password,
     });
-
+    console.log(error);
     if (error) Alert.alert(error.message);
     if (!session)
       Alert.alert("Please check your inbox for email verification!");
